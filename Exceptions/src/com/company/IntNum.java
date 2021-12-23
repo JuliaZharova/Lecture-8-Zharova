@@ -11,19 +11,22 @@ public class IntNum {
     private static int number;
 
     static void validateNumber() throws InvalidNumberException, NonNumberException {
-        System.out.println("Please enter the integer number in the range [1...100]:");
+        System.out.println("Second task. Please enter the integer number in the range [1...100]:");
         String input = null;
         try {
             input = scanner.nextLine();
             number = Integer.parseInt(input);
-        } catch (Exception exception) {
+        } catch (NumberFormatException exception) {
             throw new NonNumberException("Only numbers in range [1...100] allowed.", input);
         }
 
-        if(number < MinValidNumber || number > MaxValidNumber){
-            throw new InvalidNumberException("Entered number is not in the range [1...100]", number);
+        try {
+            if (number < MinValidNumber || number > MaxValidNumber) {
+                throw new InvalidNumberException("Entered number is not in the range [1...100]", number);
+            }
+            System.out.println("Entered number: " + number);
+        } catch (InvalidNumberException exception) {
+            System.out.println("Entered number is not in the range [1...100]. Not number string was: " + number);
         }
-
-        System.out.println("Entered number: " + number);
     }
 }
