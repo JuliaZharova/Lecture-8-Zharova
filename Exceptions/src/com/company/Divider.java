@@ -13,31 +13,39 @@ public class Divider {
         Double val2 = 0.0;
         Double result;
         Scanner scanner = new Scanner(System.in);
-        boolean cycle = true;
+        boolean isNextDouble = false;
 
         do {
             System.out.println("First task. Please enter the value of the first variable: ");
             try {
-                val1 = scanner.nextDouble();
-                cycle = false;
+                isNextDouble = scanner.hasNextDouble();
+                if (isNextDouble) {
+                    val1 = scanner.nextDouble();
+                } else {
+                    scanner.next();
+                }
             } catch (InputMismatchException exception) {
                 scanner = new Scanner(System.in);
                 System.out.println("Please enter a valid number.");
             }
-        } while (cycle);
+        } while (!isNextDouble);
 
-        cycle = true;
+        isNextDouble = false;
 
         do {
             System.out.println("First task. Please enter the value of the second variable: ");
             try {
-                val2 = scanner.nextDouble();
-                cycle = false;
+                isNextDouble = scanner.hasNextDouble();
+                if (isNextDouble) {
+                    val2 = scanner.nextDouble();
+                } else {
+                    scanner.next();
+                }
             } catch (InputMismatchException exception) {
                 scanner = new Scanner(System.in);
                 System.out.println("Please enter a valid number.");
             }
-        } while (cycle);
+        } while (!isNextDouble);
 
         try {
             result = val1 / val2;
